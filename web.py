@@ -52,6 +52,7 @@ def url_ok(url):
 with ui.column().classes('fixed-center').style('align-items: center;'):
     with ui.card().style('align-items: center;'):
         ui.label("Spoty Downloader")
+        ui.link('Spoty', 'https://open.spotify.com/')
         i = ui.input(placeholder='Enter spoty url').props('rounded outlined dense').props('clearable')
         j = ui.button('Start Download', on_click=lambda: [url_ok(i.value)])
         k = ui.label()
