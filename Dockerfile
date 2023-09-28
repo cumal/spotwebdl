@@ -6,12 +6,7 @@ LABEL org.opencontainers.image.source=https://github.com/cumal/spotwebdl
 RUN apk add --no-cache \
     ca-certificates \
     ffmpeg \
-    openssl \
-    aria2 \
-    g++ \
-    py3-cffi \
-    libffi-dev \
-    zlib-dev
+    openssl 
 
 # Install poetry and update pip/wheel
 RUN pip install --upgrade pip nicegui spotdl pytube lxml
