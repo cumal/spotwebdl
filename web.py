@@ -15,9 +15,14 @@ def download(url, title):
 
     try:
         os.chdir(newTitle)
-        p = subprocess.Popen(["spotdl",url])
-        i.set_value("")
+        i.disable()
+        j.disable()
         ui.notify("Downloading: " + title)
+        subprocess.run(["spotdl",url])
+        ui.notify("Finished")
+        i.enable()
+        i.set_value("")
+        j.enable()
         os.chdir(basepath)
     except Exception as e:
         ui.notify("Error: " + str(e))
