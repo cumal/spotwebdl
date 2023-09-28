@@ -9,7 +9,7 @@ RUN apk add --no-cache \
     openssl 
 
 # Install poetry and update pip/wheel
-RUN pip install --upgrade pip nicegui spotdl pytube lxml
+RUN pip install --upgrade pip nicegui spotdl pytube lxml asyncio
 
 # Copy web page
 COPY web.py /
