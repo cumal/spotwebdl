@@ -6,6 +6,17 @@ from lxml.html import fromstring
 
 basepath = os.getcwd()
 
+def enable_ui():
+    i.set_value("")
+    i.enable()
+    j.enable()
+    k.set_visibility(False)
+
+def disable_ui():
+    i.disable()
+    j.disable()
+    k.set_visibility(True)
+
 async def url_ok(url):
     try:
         response = requests.head(url)
@@ -31,16 +42,21 @@ async def url_ok(url):
 
     if response.status_code == 200:
         ui.notify("Downloading: " + title)
-        await asyncio.create_subprocess_shell("spotdl " + url)
-        i.set_value("")
+        disable_ui()
+        p = await asyncio.create_subprocess_shell("spotdl " + url)
+        await p.wait()
+        ui.notify("Downloaded")
     else:
         ui.notify("Error: url status code error: " + str(response.status_code))
+    enable_ui()
     os.chdir(basepath)
 
 with ui.card().classes('fixed-center').style('align-items: center;'):
     ui.label("Spoty Downloader")
-    ui.link('Spoty', 'https://open.spotify.com/')
+    ui.link('Spoty', 'https://open.spotify.com/', new_tab=True).style('color: inherit;')
     i = ui.input(placeholder='Enter spoty url').props('rounded outlined dense').props('clearable')
     j = ui.button('Start Download', on_click=lambda: url_ok(i.value))
+    k = ui.spinner(size='lg')
+    k.set_visibility(False)
 
 ui.run(port=3344, title="SpotWebDL", dark=None, reload=False)
