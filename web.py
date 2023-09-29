@@ -43,4 +43,4 @@ with ui.card().classes('fixed-center').style('align-items: center;'):
     i = ui.input(placeholder='Enter spoty url').props('rounded outlined dense').props('clearable')
     j = ui.button('Start Download', on_click=lambda: url_ok(i.value))
 
-ui.run(port=3344, title="SpotWebDL", dark=None)
+ui.run(port=3344, title="SpotWebDL", dark=None, reload=False)
