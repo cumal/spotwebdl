@@ -59,4 +59,4 @@ with ui.card().classes('fixed-center').style('align-items: center;'):
     k = ui.spinner(size='lg')
     k.set_visibility(False)
 
-ui.run(port=3344, title="SpotWebDL", dark=None, reload=False)
+ui.run(port=3344, title="SpotWebDL", dark=None, reload=False, favicon="🚀", binding_refresh_interval=0.5, show=False)
